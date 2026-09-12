@@ -1,0 +1,6 @@
+[Unit]
+Description=Back up Quanshi Zhifu database
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/qz-zhifu-backup

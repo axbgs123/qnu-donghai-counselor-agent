@@ -1,0 +1,20 @@
+[Unit]
+Description=Quanshi Zhifu MinerU streaming upload proxy
+After=network-online.target qz-zhifu.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/qz-zhifu/current
+Environment=NODE_ENV=production
+Environment=QZ_APP_ORIGIN=http://127.0.0.1:3001
+EnvironmentFile=-/opt/qz-zhifu/shared/.env.production
+ExecStart=/usr/bin/node /opt/qz-zhifu/current/deploy/mineru-upload-proxy.mjs
+Restart=always
+RestartSec=5
+MemoryMax=256M
+StandardOutput=append:/var/log/qz-zhifu/ocr.log
+StandardError=append:/var/log/qz-zhifu/ocr.log
+
+[Install]
+WantedBy=multi-user.target
